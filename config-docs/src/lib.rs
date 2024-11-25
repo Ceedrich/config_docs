@@ -6,7 +6,7 @@
 //!
 //! ## Disclaimer
 //! This project came into place for a small project I'm working on and is in no means perfect. If
-//! you have any suggestions, please consider contributing on [Github](https://github.com/Ceedrich/config-docs)
+//! you have any suggestions, please consider contributing on [Github](https://github.com/Ceedrich/config_docs)
 //!
 //! ## Usage Example
 //! ```
