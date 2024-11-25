@@ -1,0 +1,9 @@
+[package]
+name = "config-docs"
+version = "0.1.0"
+edition = "2021"
+description = "A trait and derive macro to generate documentation for your structs"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+config-docs-macros = { path = "../config-docs-macros" }
