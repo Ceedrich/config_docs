@@ -6,12 +6,22 @@ version = 3
 name = "config-docs"
 version = "0.1.0"
 dependencies = [
- "config-docs-macros",
+ "config-docs-macros 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "config-docs-macros"
 version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "config-docs-macros"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ceacb64fc40ef1473e6449d526fb69d554c05179682c6c3fabb5ce512291a5ed"
 dependencies = [
  "quote",
  "syn",

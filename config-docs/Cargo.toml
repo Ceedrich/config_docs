@@ -6,4 +6,4 @@ description = "A trait and derive macro to generate documentation for your struc
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-config-docs-macros = { path = "../config-docs-macros" }
+config-docs-macros = "0.1.0"
