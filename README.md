@@ -1,28 +1,50 @@
+# Config Docs
+
+This crate adds a trait with a derive macro to create a documentation for your
+struct in code. This is useful for things like configuration objects that should
+be documented in your app.
+
+## Disclaimer
+
+This project came into place for a small project I'm working on and is in no
+means perfect. If you have any suggestions, please consider contributing on
+[Github](https://github.com/Ceedrich/config-docs)
+
+## Usage Example
+
 ```rust
+use config_docs::ConfigDocs;
+
+#[derive(ConfigDocs)]
 struct Config {
-    /// Specifies colors used in the application
-    theme: ThemeConfig,
-    /// Specifies the keybinds used in the application
+    /// Holds the colors for your app
+    colors: ColorConfig,
+    /// Holds the keybinds for your app
     keybinds: KeybindConfig,
 }
 
-struct KeybindConfig {
-    /// Keybind to press to show help
-    help: char,
-    /// Keybind to press to quit the app
-    quit: char,
+#[derive(ConfigDocs)]
+struct ColorConfig {
+    /// The foreground color for your app as a hex value
+    fg: String,
+    /// The background color for your app as a hex value
+    bg: String,
 }
 
-struct ThemeConfig {
-    /// Foreground color used in the text as a hex color
-    ///
-    /// Example:
-    /// `fg = "#ff7fff"`
-    fg: String,
-    /// Background color used in the text as a hex color
-    ///
-    /// Example:
-    /// `bg = "#00ff7f"`
-    bg: String
+#[derive(ConfigDocs)]
+struct KeybindConfig {
+    /// Show the help inside your app
+    help: String,
+    /// Quit your app
+    quit: String
 }
+
+assert_eq!(Config::config_docs(), &[
+    ("colors", "Holds the colors for your app"),
+    ("fg", "The foreground color for your app as a hex value"),
+    ("bg", "The background color for your app as a hex value"),
+    ("keybinds", "Holds the keybinds for your app"),
+    ("help", "Show the help inside your app"),
+    ("quit", "Quit your app")
+])
 ```
