@@ -1,5 +1,7 @@
 use config_docs::ConfigDocs;
 
+use crate::ConfigDocumentation;
+
 #[test]
 fn it_works_simple() {
     #[derive(ConfigDocs)]
@@ -13,13 +15,13 @@ fn it_works_simple() {
 
     assert_eq!(
         Config::config_docs(),
-        &[
+        ConfigDocumentation(&[
             config_docs::ConfigDocumentationPart::Line("speed", "The speed of the player"),
             config_docs::ConfigDocumentationPart::Line(
                 "max_health",
                 "The max health of the player"
             )
-        ]
+        ])
     )
 }
 
@@ -56,10 +58,10 @@ fn it_works_nested() {
 
     assert_eq!(
         Config::config_docs(),
-        &[
+        ConfigDocumentation(&[
             config_docs::ConfigDocumentationPart::SubPart(
                 "colors",
-                &[
+                &ConfigDocumentation(&[
                     config_docs::ConfigDocumentationPart::Line(
                         "fg",
                         "The foreground color for your app as a hex value"
@@ -68,18 +70,18 @@ fn it_works_nested() {
                         "bg",
                         "The background color for your app as a hex value"
                     )
-                ]
+                ])
             ),
             config_docs::ConfigDocumentationPart::SubPart(
                 "keybinds",
-                &[
+                &ConfigDocumentation(&[
                     config_docs::ConfigDocumentationPart::Line(
                         "help",
                         "Show the help inside your app"
                     ),
                     config_docs::ConfigDocumentationPart::Line("quit", "Quit your app")
-                ]
+                ])
             )
-        ]
+        ])
     )
 }

@@ -41,7 +41,7 @@ impl ToTokens for Documentation {
         let Documentation { name, fields } = self;
         let out = quote! {
             impl ::config_docs::ConfigDocs for #name {
-                const DOCS: ::config_docs::ConfigDocumentation = &[#(#fields ,)*];
+                const CONFIG_DOCS: ::config_docs::ConfigDocumentation = ::config_docs::ConfigDocumentation(&[#(#fields ,)*]);
             }
         };
         tokens.extend(out);
@@ -61,7 +61,7 @@ impl ToTokens for Field {
                 let ident = ident.to_string();
 
                 quote! {
-                    ::config_docs::ConfigDocumentationPart::SubPart(#ident, &<#ty as ::config_docs::ConfigDocs>::DOCS)
+                    ::config_docs::ConfigDocumentationPart::SubPart(#ident, &<#ty as ::config_docs::ConfigDocs>::CONFIG_DOCS)
                 }
             },
         };

@@ -38,6 +38,11 @@
 //!     quit: String
 //! }
 //!
+//! // Print it directly
+//! println!("{}", Config::config_docs());
+//!
+//! // or get it as a list of key-value pairs to display yourself
+//! let kv: &[(&str, &str)] = Config::config_docs().as_tuples();
 //! ```
 //!
 
