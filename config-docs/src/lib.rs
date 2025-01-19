@@ -15,8 +15,10 @@
 //! #[derive(ConfigDocs)]
 //! struct Config {
 //!     /// Holds the colors for your app
+//!     #[nested]
 //!     colors: ColorConfig,
 //!     /// Holds the keybinds for your app
+//!     #[nested]
 //!     keybinds: KeybindConfig,
 //! }
 //!
@@ -36,18 +38,14 @@
 //!     quit: String
 //! }
 //!
-//! assert_eq!(Config::config_docs(), &[
-//!     ("colors", "Holds the colors for your app"),
-//!     ("fg", "The foreground color for your app as a hex value"),
-//!     ("bg", "The background color for your app as a hex value"),
-//!     ("keybinds", "Holds the keybinds for your app"),
-//!     ("help", "Show the help inside your app"),
-//!     ("quit", "Quit your app")
-//! ])
 //! ```
 //!
 
-mod config_docs;
+mod documentation;
+extern crate self as config_docs;
 
-pub use config_docs::*;
-pub use config_docs_macros::ConfigDocs;
+#[cfg(test)]
+mod test;
+
+pub use documentation::*;
+pub use config_docs_macros::*;
